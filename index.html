@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paolo Mengano — Economist</title>
+
+<!-- Palm tree favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌴</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --accent:       #37626e;
+    --accent-dark:  #234550;
+    --accent-light: #d8eaed;
+    --accent-xlt:   #edf5f7;
+    --accent-bdr:   #c0d9de;
+    --bg:           #ffffff;
+    --text:         #1a2426;
+    --muted:        #6e8288;
+    --border:       #e8eced;
+    --border-soft:  #f2f4f5;
+    --serif:        'EB Garamond', Georgia, serif;
+    --sans:         'Figtree', system-ui, sans-serif;
+    --max:          780px;
+    --pad:          1.5rem;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.93);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.4rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-size: 0.73rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.18s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HEADER ── */
+  header {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 2.8rem var(--pad) 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem 2rem;
+    align-items: start;
+  }
+
+  .header-text h1 {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+
+  .header-text .position {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .header-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.8rem;
+    font-size: 0.84rem;
+  }
+
+  .header-contacts a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.18s;
+  }
+  .header-contacts a:hover { border-color: var(--accent); }
+
+  .header-contacts .sep { color: var(--border); font-size: 0.75rem; }
+  .header-contacts .email { color: var(--muted); font-size: 0.82rem; }
+
+  .header-photo img {
+    width: 150px;
+    height: 188px;
+    border-radius: 6px;
+    object-fit: cover;
+    object-position: center top;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.11);
+    display: block;
+  }
+
+  .bio {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 1.6rem var(--pad) 2rem;
+  }
+
+  .bio p {
+    font-family: var(--serif);
+    font-size: 1.07rem;
+    line-height: 1.78;
+    color: var(--text);
+    max-width: 660px;
+  }
+
+  .bio p a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-light);
+    transition: border-color 0.18s;
+  }
+  .bio p a:hover { border-color: var(--accent); }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--pad) 2rem;
+  }
+
+  .section-label {
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-top: 1px solid var(--border);
+    padding-top: 1.8rem;
+    margin-bottom: 1.3rem;
+  }
+
+  /* ── WORKSHOPS ── */
+  .ws-item {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .ws-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .ws-name {
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .ws-name a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.18s, border-color 0.18s;
+  }
+  .ws-name a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .ws-meta {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+  .ws-meta a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.18s;
+  }
+  .ws-meta a:hover { border-color: var(--accent); }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.63rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.15em 0.55em;
+    border-radius: 2px;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    line-height: 1.6;
+  }
+
+  /* ── PAPERS ── */
+  .paper-item {
+    padding-bottom: 1.3rem;
+    margin-bottom: 1.3rem;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .paper-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .paper-title {
+    font-family: var(--serif);
+    font-size: 1.04rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+  }
+  .paper-title a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.18s, border-color 0.18s;
+  }
+  .paper-title a:hover { color: var(--accent); border-color: var(--accent); }
+
+  .paper-authors {
+    font-size: 0.84rem;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+  .paper-authors a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--border);
+    transition: color 0.18s;
+  }
+  .paper-authors a:hover { color: var(--accent); }
+
+  .paper-venue {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .paper-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.55rem;
+  }
+
+  .plink {
+    display: inline-block;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.22em 0.65em;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .plink.pri {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .plink.pri:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+  .plink.sec {
+    background: var(--accent-xlt);
+    color: var(--accent-dark);
+    border: 1px solid var(--accent-bdr);
+  }
+  .plink.sec:hover { background: var(--accent-light); }
+
+  /* ── WIP ── */
+  .wip-item {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--text);
+    padding-bottom: 0.9rem;
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .wip-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .wip-item .wip-authors {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+  .wip-item a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.18s;
+  }
+  .wip-item a:hover { border-color: var(--accent); }
+
+  /* ── TEACHING ── */
+  .teaching-list {
+    list-style: none;
+    display: grid;
+    gap: 0;
+  }
+  .teaching-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--text);
+  }
+  .teaching-list li:last-child { border-bottom: none; }
+  .level-tag {
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--border-soft);
+    padding: 0.15em 0.55em;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 1.5rem var(--pad);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    header {
+      grid-template-columns: 1fr;
+      padding-top: 2rem;
+      gap: 1.2rem;
+    }
+    .header-photo img { width: 100px; height: 125px; border-radius: 6px; }
+    .header-text h1 { font-size: 2rem; }
+    .nav-name { display: none; }
+    :root { --pad: 1.1rem; }
+  }
+
+  /* ── FADE IN ── */
+  @keyframes up {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  header { animation: up 0.45s ease both; }
+  .bio   { animation: up 0.45s ease 0.08s both; }
+  section { animation: up 0.45s ease 0.12s both; }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <div></div>
+    <ul class="nav-links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="https://ilmenga.github.io/Website/Mengano_resume.pdf" target="_blank">CV</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<header id="top">
+  <div class="header-photo">
+    <img src="photo.jpg"
+         alt="Paolo Mengano">
+  </div>
+  <div class="header-text">
+    <h1>Paolo Mengano</h1>
+    <p class="position">
+      Assistant Professor of Economics, <a href="https://www.esade.edu/en" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light)">Esade Business School</a><br>
+      Research Collaborator, <a href="https://www.pricinglab.org/" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-light)">HBS Pricing Lab</a>
+    </p>
+    <div class="header-contacts">
+      <a href="https://ilmenga.github.io/Website/Mengano_resume.pdf" target="_blank">Curriculum Vitae</a>
+      <span class="sep">&middot;</span>
+      <a href="https://scholar.google.com/citations?user=Z3h1tgEAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a>
+      <span class="sep">&middot;</span>
+      <a href="/cdn-cgi/l/email-protection#96e6f7f9faf9b8fbf3f8f1f7f8f9d6f3e5f7f2f3b8f3f2e3">Email</a>
+    </div>
+  </div>
+</header>
+
+<!-- ── BIO ── -->
+<div class="bio">
+  <p>
+    I am an Assistant Professor of Economics at <a href="https://www.esade.edu/en">Esade Business School</a>
+    and a Research Collaborator at the <a href="https://www.pricinglab.org/">HBS Pricing Lab</a>.
+    My research focuses on macroeconomics, industrial organization, and market power.
+    Prior to joining Esade, I was a Postdoctoral Fellow at Harvard Business School.
+    I received my Ph.D. in Economics from the University of Zurich in 2023.
+  </p>
+</div>
+
+<!-- ── WORKSHOPS ── -->
+<section>
+  <div class="section-label">Workshops &amp; Seminars</div>
+
+  <div class="ws-item">
+    <div class="ws-name">
+      <a href="https://www.esade.edu/faculty-research/en/group-research-economics-finance/events/esade-macro-meetings-2025">Esade Macro Meetings</a>
+      <span class="badge">Co-organizer</span>
+    </div>
+    <div class="ws-meta">
+      With <a href="https://sites.google.com/site/calinarcalean/">Calin Arcalean</a>,
+      <a href="https://sites.google.com/site/carolinavillegassanchez/">Carolina Villegas-Sanchez</a>,
+      and <a href="https://sites.google.com/site/ioanaschiopuweb/">Ioana Schiopu</a>.
+      Submit your paper for the 2026 edition: <a href="https://itemsweb.esade.edu/wi/research/gref/Call_EM2_2026.pdf">call for papers</a>
+    </div>
+  </div>
+
+  <div class="ws-item">
+    <div class="ws-name">
+      Department Seminars
+      <span class="badge">Co-organizer</span>
+    </div>
+    <div class="ws-meta">
+      With <a href="https://sites.google.com/site/aemanuelerizzo/home">Emanuele Rizzo</a>.
+      Around Barcelona? Drop us a line to present.
+    </div>
+  </div>
+</section>
+
+<!-- ── RESEARCH ── -->
+<section id="research">
+  <div class="section-label">Publications</div>
+
+  <div class="paper-item">
+    <div class="paper-title">
+      <a href="https://www.sciencedirect.com/science/article/pii/S0167718726000160" target="_blank">
+        Measuring Markups with Revenue Data
+      </a>
+    </div>
+    <div class="paper-authors">
+      With <a href="https://sites.google.com/view/ivankirov/" target="_blank">Ivan Kirov</a>
+      and <a href="https://sites.google.com/site/trainajames/" target="_blank">James Traina</a>
+    </div>
+    <div class="paper-venue">International Journal of Industrial Organization, 105, 2026</div>
+    <div class="paper-links">
+      <a class="plink pri" href="https://www.sciencedirect.com/science/article/pii/S0167718726000160" target="_blank">Journal Version</a>
+      <a class="plink sec" href="https://ilmenga.github.io/Website/Markups_Revenues.pdf" target="_blank">PDF</a>
+      <a class="plink sec" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3912966" target="_blank">SSRN</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-label">Working Papers</div>
+
+  <div class="paper-item">
+    <div class="paper-title">
+      <a href="https://alexandermackay.org/files/Markups%20and%20Cost%20Pass-through%20Along%20the%20Supply%20Chain.pdf" target="_blank">
+        Markups and Cost Pass-through Along the Supply Chain
+      </a>
+    </div>
+    <div class="paper-authors">
+      With <a href="https://santiagoalvarezblaser.com" target="_blank">Santiago E. Alvarez</a>,
+      <a href="https://www.hbs.edu/faculty/Pages/profile.aspx?facId=394129" target="_blank">Alberto Cavallo</a>,
+      and <a href="http://alexandermackay.org" target="_blank">Alexander MacKay</a>
+    </div>
+    <div class="paper-links">
+      <a class="plink pri" href="https://alexandermackay.org/files/Markups%20and%20Cost%20Pass-through%20Along%20the%20Supply%20Chain.pdf" target="_blank">PDF</a>
+      <a class="plink sec" href="https://www.nber.org/papers/w34110" target="_blank">NBER WP</a>
+      <a class="plink sec" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4935032" target="_blank">SSRN</a>
+    </div>
+  </div>
+
+  <div class="paper-item">
+    <div class="paper-title">
+      <a href="https://ilmenga.github.io/Website/Mengano_BargainingTrends.pdf" target="_blank">
+        Trends in Worker Bargaining Power
+      </a>
+    </div>
+    <div class="paper-links">
+      <a class="plink pri" href="https://ilmenga.github.io/Website/Mengano_BargainingTrends.pdf" target="_blank">PDF</a>
+      <a class="plink sec" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4466868" target="_blank">SSRN</a>
+    </div>
+  </div>
+
+  <div class="paper-item">
+    <div class="paper-title">
+      <a href="https://ilmenga.github.io/Website/Mergers_MarketPower.pdf" target="_blank">
+        Mergers and Market Power
+      </a>
+    </div>
+    <div class="paper-authors">
+      With <a href="https://sites.google.com/site/levonyan/" target="_blank">Vardges Levonyan</a>
+    </div>
+    <div class="paper-links">
+      <a class="plink pri" href="https://ilmenga.github.io/Website/Mergers_MarketPower.pdf" target="_blank">PDF</a>
+      <a class="plink sec" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4466826" target="_blank">SSRN</a>
+    </div>
+  </div>
+
+  <div class="paper-item">
+    <div class="paper-title">
+      <a href="https://ilmenga.github.io/Website/Markup_Comparison.pdf" target="_blank">
+        Markup Dynamics Revisited: Insights from a Survey of European Firms
+      </a>
+    </div>
+    <div class="paper-links">
+      <a class="plink pri" href="https://ilmenga.github.io/Website/Markup_Comparison.pdf" target="_blank">PDF</a>
+      <a class="plink sec" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5141249" target="_blank">SSRN</a>
+    </div>
+  </div>
+
+  <div class="paper-item">
+    <div class="paper-title">
+      <a href="https://ilmenga.github.io/Website/Labor_Force_and_Worker_Bargaining_Power.pdf" target="_blank">
+        Bargaining Power and Labor Force Participation
+      </a>
+    </div>
+    <div class="paper-links">
+      <a class="plink pri" href="https://ilmenga.github.io/Website/Labor_Force_and_Worker_Bargaining_Power.pdf" target="_blank">PDF</a>
+      <a class="plink sec" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4604096" target="_blank">SSRN</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── WORK IN PROGRESS ── -->
+<section>
+  <div class="section-label">Selected Work in Progress</div>
+
+  <div class="wip-item">
+    <strong>Resisting Creative Destruction: Industry Dynamics with Dominant Firms</strong>
+    <div class="wip-authors">
+      With <a href="https://sites.google.com/view/elie-gerschel/home?authuser=0" target="_blank">Elie Gerschel</a>
+      and <a href="https://sites.google.com/view/julianschaerer/" target="_blank">Julian Schärer</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEACHING ── -->
+<section id="teaching">
+  <div class="section-label">Teaching</div>
+  <ul class="teaching-list">
+    <li>
+      <span>International Economics &amp; Finance</span>
+      <span class="level-tag">Undergraduate</span>
+    </li>
+    <li>
+      <span>Econometrics</span>
+      <span class="level-tag">Undergraduate</span>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span>Paolo Mengano</span>
+  <span>Esade Business School &middot; Barcelona</span>
+</footer>
+
+</body>
+</html>
