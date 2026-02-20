@@ -388,21 +388,25 @@
   /* ── MOBILE ── */
   @media (max-width: 600px) {
     header {
-      grid-template-columns: auto 1fr;
-      padding-top: 1.8rem;
-      gap: 1rem 1.2rem;
-      align-items: start;
+      grid-template-columns: 1fr;
+      padding-top: 2rem;
+      gap: 1.4rem;
+      text-align: center;
     }
-    .header-photo img { width: 130px; height: 163px; border-radius: 6px; }
-    .header-text h1 { font-size: 1.9rem; }
-    .header-text .position { font-size: 0.84rem; }
+    .header-photo {
+      display: flex;
+      justify-content: center;
+    }
+    .header-photo img {
+      width: 180px;
+      height: 225px;
+      border-radius: 8px;
+    }
+    .header-text h1 { font-size: 2rem; }
+    .header-text .position { font-size: 0.88rem; }
+    .header-contacts { justify-content: center; }
     .nav-name { display: none; }
     :root { --pad: 1.1rem; }
-  }
-
-  @media (max-width: 400px) {
-    .header-photo img { width: 110px; height: 138px; }
-    .header-text h1 { font-size: 1.6rem; }
   }
 
   /* ── FADE IN ── */
